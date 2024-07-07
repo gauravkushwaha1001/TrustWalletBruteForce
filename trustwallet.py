@@ -147,7 +147,7 @@ def getWallet():
                     print(Fore.CYAN + f"[${usd}] : {" ".join(words)} \n")
                     print(Fore.RESET + " ")
                     with open("ValidWallets.txt", "a") as valid_Phrase:
-                        valid_Phrase.write("$" + str(usd) + ":" + " ".join(words)+"\n")
+                        valid_Phrase.write("[$" + str(usd) + "] : " + " ".join(words)+"\n")
 
                     #<================LOCK THE WALLET AND RESET==================>
                     #
@@ -165,7 +165,7 @@ def getWallet():
                     print(Fore.GREEN + f"[${usd}] : {" ".join(words)}")
                     try:
                         with open("MoneyWallets.txt", "a") as valid_Phrase:
-                            valid_Phrase.write("$" + usd + " : ", " ".join(words) +"\n")
+                            valid_Phrase.write("[$" + usd + "] : ", " ".join(words) +"\n")
                     except:
                         pass
                     driver.quit()
@@ -174,7 +174,7 @@ def getWallet():
         # importSeeds()
 
     except Exception as e:
-        print(Fore.BLUE + "ErrorMessage : ",Fore.RED + e)
+        print(Fore.BLUE + "ErrorMessage : ",Fore.RED, e)
         print(Fore.RESET +" ")
         driver.quit()
         getWallet()
