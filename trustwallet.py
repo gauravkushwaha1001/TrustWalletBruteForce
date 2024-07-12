@@ -1,5 +1,4 @@
 import threading
-from time import sleep
 import os
 try:
     from colorama import Fore, Back, Style
@@ -29,6 +28,7 @@ def getWallet():
     chromeOption.add_extension(EXTENSION_PATH)
     chromeOption.add_argument("--headless=new")
     driver = webdriver.Chrome(options=chromeOption)
+    driver.implicitly_wait(30)
 
     try:
 
@@ -55,12 +55,9 @@ def getWallet():
         # def importSeeds():
 
         # Click on Import
-        try:
-            sleep(3)
-            driver.find_element(By.XPATH, value="/html/body/div/div/div[2]/div/div/div/div/div[3]/div").click()
-        except:
-            sleep(8)
-            driver.find_element(By.XPATH, value="/html/body/div/div/div[2]/div/div/div/div/div[3]/div").click()
+
+        driver.find_element(By.XPATH, value="/html/body/div/div/div[2]/div/div/div/div/div[3]/div").click()
+
 
         # Enter the password
         driver.find_element(By.XPATH, value="/html/body/div/div[2]/div/div/div[2]/form/div[1]/div/div/input").send_keys(password)
@@ -116,32 +113,19 @@ def getWallet():
                 driver.find_element(By.XPATH,value="/html/body/div/div/div/div[2]/div/div/div[2]/form/div[2]/div[2]/button").click() #Click on Next
 
                 # click on share data
-                try:
-                    sleep(3)
-                    driver.find_element(By.XPATH, value="/html/body/div/div[2]/div/div/div/div[2]/div[2]/button").click()
-                except:
-                    sleep(10)
-                    driver.find_element(By.XPATH, value="/html/body/div/div[2]/div/div/div/div[2]/div[2]/button").click()
+                driver.find_element(By.XPATH, value="/html/body/div/div[2]/div/div/div/div[2]/div[2]/button").click()
 
                 # click on open wallet
-                try:
-                    driver.find_element(By.XPATH, value="/html/body/div/div[2]/div/div/div/div[2]/div/button").click()
-                except:
-                    sleep(5)
-                    driver.find_element(By.XPATH, value="/html/body/div/div[2]/div/div/div/div[2]/div/button").click()
+                driver.find_element(By.XPATH, value="/html/body/div/div[2]/div/div/div/div[2]/div/button").click()
                 try:
                     driver.find_element(By.XPATH,value="/html/body/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[5]/div/button").click() # click on got it
-                    sleep(1)
+                    
                     driver.find_element(By.XPATH,value="/html/body/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[5]/div/button").click() # click on i am ready to use trust wallet
                 except:
                     pass
 
-                sleep(1)
-                try:
-                    getBal = driver.find_element(By.XPATH, value="/html/body/div/div[1]/div[2]/div[1]/div[1]/h2") # check balance
-                except:
-                    sleep(5)
-                    getBal = driver.find_element(By.XPATH, value="/html/body/div/div[1]/div[2]/div[1]/div[1]/h2") # check balance
+                
+                getBal = driver.find_element(By.XPATH, value="/html/body/div/div[1]/div[2]/div[1]/div[1]/h2") # check balance
                 usd = float(getBal.text[1:])
                 if usd == 0:
                     print(Fore.CYAN + f"[${usd}] : {" ".join(words)} \n")
