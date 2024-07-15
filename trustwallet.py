@@ -8,17 +8,18 @@ except:
 
 def getWallet():
     try:            
-        import random
         from selenium import webdriver
         from selenium.webdriver.common.by import By
         from selenium.webdriver.common.keys import Keys
-        import data
+        
     except:
-        os.system("pip install selenium")
-        import random
+        os.system("pip install selenium")        
         from selenium import webdriver
         from selenium.webdriver.common.by import By
         from selenium.webdriver.common.keys import Keys
+        
+    finally:
+        import random
         import data
 
     EXTENSION_PATH = data.extension_path
