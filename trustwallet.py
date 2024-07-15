@@ -45,8 +45,7 @@ def getWallet():
         password = "Password@312"
 
         driver.get("chrome-extension://"+EXTENSION_ID+"/home.html#/onboarding/")
-        sleep(5)
-    
+            
         # driver.switch_to.window(driver.window_handles[1])
         # driver.close()
 
@@ -93,7 +92,7 @@ def getWallet():
 
             # IF Invalid
             try:
-                # sleep(1)
+                
                 errorMsg = driver.find_element(By.XPATH,value="/html/body/div/div/div/div[2]/div/div/div[2]/form/div[1]/div[4]/div/div")
                 driver.find_element(By.XPATH,value="/html/body/div/div/div/div[2]/div/div/div[2]/form/div[1]/div[3]/div/button/p").click()
                 print(Fore.RED + f"INVALID: {" ".join(words)}")
@@ -109,7 +108,7 @@ def getWallet():
                 except:
                     pass
 
-                # sleep(2)
+                
                 driver.find_element(By.XPATH,value="/html/body/div/div/div/div[2]/div/div/div[2]/form/div[2]/div[2]/button").click() #Click on Next
 
                 # click on share data
@@ -154,7 +153,7 @@ def getWallet():
                         pass
                     driver.quit()
                     getWallet()
-                    # sleep(5000000000)
+                    
         # importSeeds()
 
     except Exception as e:
@@ -164,7 +163,7 @@ def getWallet():
         getWallet()
 
 if __name__ == '__main__':
-    # getWallet()
+    
     enteredThread = int(input("Enter Threads : "))
     currentThread = 1
 
